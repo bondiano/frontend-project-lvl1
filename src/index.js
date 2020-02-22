@@ -1,8 +1,12 @@
 import readlineSync from 'readline-sync';
 
-export const run = () => {
+import { noop } from './utils.js';
+
+export const run = (gameRunner = noop) => {
   console.log('Welcome to the Brain Games!');
 
-  const actual = readlineSync.question('Your answer: ');
-  console.log(`Hello, ${actual}`);
+  const name = readlineSync.question('May I have your name? ');
+  console.log(`Hello, ${name}!`);
+
+  gameRunner({ name });
 };
