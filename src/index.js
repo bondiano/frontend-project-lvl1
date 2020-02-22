@@ -1,9 +1,8 @@
-import readlineSync from "readline-sync";
+import readlineSync from 'readline-sync';
 
 export const run = () => {
-   console.log("Welcome to the Brain Games!");
+  console.log('Welcome to the Brain Games!');
 
-   const actual = readlineSync.question("Your answer: ");
-
-   console.log(`Hello, ${actual}`);
-}
+  const actual = readlineSync.question('Your answer: ');
+  console.log(`Hello, ${actual}`);
+};
