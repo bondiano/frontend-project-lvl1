@@ -9,7 +9,6 @@ export const run = (getGameData) => {
   console.log(`Hello, ${name}!`);
 
   const { welcomeMessage, getRound } = getGameData();
-
   console.log(welcomeMessage);
 
   const buildFailMessage = (

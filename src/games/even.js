@@ -1,11 +1,10 @@
 import { getRandomInt, isEven } from '../utils.js';
 
 export const getRound = () => {
-  const questionNumber = getRandomInt(1, 1000);
-  const question = `Question: ${questionNumber}`;
+  const question = getRandomInt(1, 1000);
 
   const checkResult = (answer) => {
-    const correctAnswer = isEven(questionNumber) ? 'yes' : 'no';
+    const correctAnswer = isEven(question) ? 'yes' : 'no';
     const isCorrect = answer === correctAnswer;
 
     return {

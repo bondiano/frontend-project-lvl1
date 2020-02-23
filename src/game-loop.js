@@ -9,7 +9,7 @@ export const gameLoop = (
 ) => {
   for (let i = 0; i < ROUNDS_COUNT; i += 1) {
     const { question, checkResult } = getRound();
-    console.log(question);
+    console.log(`Question: ${question}`);
 
     const answer = readlineSync.question('Your answer: ');
 

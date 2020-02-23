@@ -4,7 +4,7 @@ export const getRound = () => {
   const firstNumber = getRandomInt(1, 100);
   const secondNumber = getRandomInt(1, 100);
 
-  const question = `Question: ${firstNumber} ${secondNumber}`;
+  const question = `${firstNumber} ${secondNumber}`;
 
   const checkResult = (answer) => {
     const correctAnswer = gcd(firstNumber, secondNumber);

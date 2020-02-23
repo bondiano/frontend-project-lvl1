@@ -18,3 +18,15 @@ export const gcd = (originalA, originalB) => {
 
   return a || b;
 };
+
+export const genProgression = (startNumber, d, count) => {
+  const result = [];
+
+  for (let i = 0; i < count; i += 1) {
+    // a(n) = a(1) + d * (n - 1)
+    const a = startNumber + d * i;
+    result.push(a);
+  }
+
+  return result;
+};

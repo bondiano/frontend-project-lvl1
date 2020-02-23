@@ -12,7 +12,7 @@ const getRound = () => {
   const firstNumber = getRandomInt(1, 100);
   const secondNumber = getRandomInt(1, 100);
   const operator = operators[getRandomInt(0, 2)];
-  const question = `Question: ${firstNumber} ${operator} ${secondNumber}`;
+  const question = `${firstNumber} ${operator} ${secondNumber}`;
 
   const checkResult = (answer) => {
     const correctAnswer = actionByOperator[operator](firstNumber, secondNumber);
