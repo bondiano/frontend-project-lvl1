@@ -1,25 +1,31 @@
-import { getRandomInt, isPrime } from '../utils.js';
+import { getRandomInt } from '../utils.js';
 
-export const getRound = () => {
+const isPrime = (num) => {
+  if (num < 1) {
+    return false;
+  }
+
+  for (let i = 2, sqrt = Math.sqrt(num); i <= sqrt; i += 1) {
+    if (num % i === 0) {
+      return false;
+    }
+  }
+
+  return true;
+};
+
+const getRound = () => {
   const question = getRandomInt(1, 1000);
 
-  const checkResult = (answer) => {
-    const correctAnswer = isPrime(question) ? 'yes' : 'no';
-    const isCorrect = answer === correctAnswer;
-
-    return {
-      isCorrect,
-      correctAnswer,
-    };
-  };
+  const correctAnswer = isPrime(question) ? 'yes' : 'no';
 
   return {
     question,
-    checkResult,
+    correctAnswer,
   };
 };
 
-export const getGameData = () => ({
+export const gameData = {
   welcomeMessage: 'Answer "yes" if given number is prime. Otherwise answer "no".',
   getRound,
-});
+};

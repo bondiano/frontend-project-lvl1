@@ -1,37 +1,40 @@
-import { getRandomInt, genProgression } from '../utils.js';
+import { getRandomInt } from '../utils.js';
 
-const ELEMENTS_COUNT = 10;
+const PROGRESSION_LENGTH = 10;
 
-export const getRound = () => {
+const genProgression = (startNumber, diff) => {
+  const result = [];
+
+  for (let i = 0; i < PROGRESSION_LENGTH; i += 1) {
+    // a(n) = a(1) + d * (n - 1)
+    const element = startNumber + diff * i;
+    result.push(element);
+  }
+
+  return result;
+};
+
+const getRound = () => {
   const startNumber = getRandomInt(1, 100);
-  const d = getRandomInt(1, 10);
+  const diff = getRandomInt(1, 10);
 
-  const hiddenIndex = getRandomInt(0, ELEMENTS_COUNT - 1);
+  const hiddenNumberIndex = getRandomInt(0, PROGRESSION_LENGTH - 1);
 
-  const progressionArr = genProgression(startNumber, d, ELEMENTS_COUNT);
+  const progression = genProgression(startNumber, diff);
 
-  const hiddenNumber = progressionArr[hiddenIndex];
+  const hiddenNumber = progression[hiddenNumberIndex];
 
-  const question = progressionArr.reduce(
-    (acc, num, index) => `${acc} ${index === hiddenIndex ? '..' : num}`,
+  const question = progression.reduce(
+    (acc, num, index) => `${acc} ${index === hiddenNumberIndex ? '..' : num}`,
   );
-
-  const checkResult = (answer) => {
-    const isCorrect = +answer === hiddenNumber;
-
-    return {
-      isCorrect,
-      correctAnswer: hiddenNumber,
-    };
-  };
 
   return {
     question,
-    checkResult,
+    correctAnswer: String(hiddenNumber),
   };
 };
 
-export const getGameData = () => ({
+export const gameData = {
   welcomeMessage: 'What number is missing in the progression?',
   getRound,
-});
+};

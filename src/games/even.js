@@ -1,25 +1,19 @@
-import { getRandomInt, isEven } from '../utils.js';
+import { getRandomInt } from '../utils.js';
 
-export const getRound = () => {
+const isEven = (number) => number % 2 === 0;
+
+const getRound = () => {
   const question = getRandomInt(1, 1000);
 
-  const checkResult = (answer) => {
-    const correctAnswer = isEven(question) ? 'yes' : 'no';
-    const isCorrect = answer === correctAnswer;
-
-    return {
-      isCorrect,
-      correctAnswer,
-    };
-  };
+  const correctAnswer = isEven(question) ? 'yes' : 'no';
 
   return {
     question,
-    checkResult,
+    correctAnswer,
   };
 };
 
-export const getGameData = () => ({
+export const gameData = {
   welcomeMessage: 'Answer "yes" if the number is even, otherwise answer "no".',
   getRound,
-});
+};

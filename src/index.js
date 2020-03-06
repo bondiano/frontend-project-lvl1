@@ -1,23 +1,22 @@
 import readlineSync from 'readline-sync';
 
-import { gameLoop } from './game-loop.js';
+import { runGameLoop } from './game-loop.js';
 
-export const run = (getGameData) => {
+export const run = (gameData) => {
   console.log('Welcome to the Brain Games!');
 
   const name = readlineSync.question('May I have your name? ');
   console.log(`Hello, ${name}!`);
 
-  const { welcomeMessage, getRound } = getGameData();
+  const { welcomeMessage, getRound } = gameData;
   console.log(welcomeMessage);
 
   const buildFailMessage = (
     answer,
     correctAnswer,
-  ) => `"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".
-Let's try again, ${name}!`;
+  ) => `"${answer}" is wrong answer ;(. Correct answer was "${correctAnswer}".\nLet's try again, ${name}!`;
 
   const buildSuccessMessage = () => `Congratulations, ${name}!`;
 
-  gameLoop(getRound, buildFailMessage, buildSuccessMessage);
+  runGameLoop(getRound, buildFailMessage, buildSuccessMessage);
 };

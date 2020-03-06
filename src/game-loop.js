@@ -2,20 +2,18 @@ import readlineSync from 'readline-sync';
 
 const ROUNDS_COUNT = 3;
 
-export const gameLoop = (
+export const runGameLoop = (
   getRound,
   buildFailMessage,
   buildSuccessMessage,
 ) => {
   for (let i = 0; i < ROUNDS_COUNT; i += 1) {
-    const { question, checkResult } = getRound();
+    const { question, correctAnswer } = getRound();
     console.log(`Question: ${question}`);
 
     const answer = readlineSync.question('Your answer: ');
 
-    const { isCorrect, correctAnswer } = checkResult(answer);
-
-    if (!isCorrect) {
+    if (answer !== correctAnswer) {
       const message = buildFailMessage(answer, correctAnswer);
       console.log(message);
       return;

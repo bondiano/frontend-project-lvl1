@@ -1,28 +1,37 @@
-import { getRandomInt, gcd } from '../utils.js';
+import { getRandomInt } from '../utils.js';
 
-export const getRound = () => {
+/**
+ * Iterative version of Euclidean Algorithm of finding greatest common divisor (GCD).
+ * @param {number} originalA
+ * @param {number} originalB
+ * @return {number}
+ */
+const gcd = (originalA, originalB) => {
+  let a = Math.abs(originalA);
+  let b = Math.abs(originalB);
+
+  while (a && b && a !== b) {
+    [a, b] = a > b ? [a - b, b] : [a, b - a];
+  }
+
+  return a || b;
+};
+
+const getRound = () => {
   const firstNumber = getRandomInt(1, 100);
   const secondNumber = getRandomInt(1, 100);
 
   const question = `${firstNumber} ${secondNumber}`;
 
-  const checkResult = (answer) => {
-    const correctAnswer = gcd(firstNumber, secondNumber);
-    const isCorrect = +answer === correctAnswer;
-
-    return {
-      isCorrect,
-      correctAnswer,
-    };
-  };
+  const correctAnswer = String(gcd(firstNumber, secondNumber));
 
   return {
     question,
-    checkResult,
+    correctAnswer,
   };
 };
 
-export const getGameData = () => ({
+export const gameData = {
   welcomeMessage: 'Find the greatest common divisor of given numbers.',
   getRound,
-});
+};
